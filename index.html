@@ -3,82 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hồ Thái Long - Lập Trình Viên Web Chuyên Nghiệp & Sáng Tạo</title>
+    <title>HỒ THÁI LONG - Lập trình viên Web Sáng Tạo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .dark body { background-color: #0f172a; color: #e2e8f0; }
-        .dark .bg-white { background-color: #1e293b !important; }
-        .dark .bg-slate-50 { background-color: #182233 !important; }
-        .dark .text-slate-800 { color: #e2e8f0 !important; }
-        .dark .text-slate-600 { color: #94a3b8 !important; }
-        .dark .text-slate-700 { color: #cbd5e1 !important; }
-        .dark .text-slate-900 { color: #f1f5f9 !important; }
-        .dark .text-slate-500 { color: #a0aec0 !important; }
-        .dark .border-slate-200 { border-color: #334155 !important; }
-        .dark .border-slate-300 { border-color: #475569 !important; }
-        .dark .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.25) !important; }
-        .dark .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.2) !important; }
-        .dark header.bg-primary\/90 { background-color: hsla(174, 72%, 26%, 0.9) !important; } /* Even darker teal for header */
-        .dark #skills .bg-slate-50 { background-color: #334155 !important; } /* Skills card bg in dark */
-        .dark #contact input, .dark #contact textarea, .dark .modal-content { background-color: #334155; border-color: #475569; color: #e2e8f0; }
-        .dark #contact input::placeholder, .dark #contact textarea::placeholder { color: #64748b; }
-        .dark .text-primary { color: #2dd4bf !important; }
-        .dark .text-secondary { color: #f59e0b !important; }
-        .dark .hover\:text-secondary:hover { color: #fbbf24 !important; }
-        .dark .bg-primary { background-color: #0D9488 !important; }
-        .dark .border-primary { border-color: #0D9488 !important; }
-        .dark .border-secondary { border-color: #F59E0B !important; }
-        .dark .bg-secondary { background-color: #F59E0B !important; }
-        .dark .hover\:bg-secondary-darker:hover { background-color: #d97706 !important; }
-        .dark .focus\:ring-primary:focus { ring-color: #14b8a6 !important; }
-        .dark .focus\:ring-secondary:focus { ring-color: #f59e0b !important; }
-        .dark .ring-white\/50 { ring-color: rgba(226,232,240,0.5) !important; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #e2e8f0; }
-        .dark ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
-        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
-        .dark ::-webkit-scrollbar-thumb:hover { background: #334155; }
-        .section-animate { opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .section-animate.visible { opacity: 1; transform: translateY(0); }
-        *:focus-visible { outline: 2px solid var(--tw-ring-color, #0D9488); outline-offset: 2px; }
-        .dark *:focus-visible { outline-color: var(--tw-ring-color, #14b8a6); }
-        .hamburger div { width: 25px; height: 3px; background-color: white; margin: 5px 0; transition: all 0.3s ease; }
-        .dark .hamburger div { background-color: #e2e8f0; }
-        .hamburger.open .bar1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-light: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --accent-neon: #00f5d4;
+            --accent-glow: rgba(0, 245, 212, 0.3);
+            --secondary-accent: #ff4777;
+            --error-color: #ff4777; /* Màu cho thông báo lỗi */
+            --success-color: #00f5d4; /* Màu cho thông báo thành công */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-card); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-neon); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00cba9; }
+
+        .neon-text { color: var(--accent-neon); text-shadow: 0 0 5px var(--accent-neon), 0 0 10px var(--accent-neon), 0 0 15px var(--accent-glow); }
+        .neon-border { border: 1px solid var(--accent-neon); box-shadow: 0 0 8px var(--accent-glow); }
+        .neon-button {
+            background-color: transparent;
+            color: var(--accent-neon);
+            border: 2px solid var(--accent-neon);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 3px var(--accent-glow);
+        }
+        .neon-button:hover {
+            background-color: var(--accent-neon);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px var(--accent-neon), 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+        .secondary-neon-button {
+            background-color: var(--secondary-accent);
+            color: var(--bg-dark);
+            border: 2px solid var(--secondary-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(255, 71, 119, 0.4);
+        }
+        .secondary-neon-button:hover {
+            background-color: transparent;
+            color: var(--secondary-accent);
+            box-shadow: 0 0 15px var(--secondary-accent), 0 0 25px rgba(255, 71, 119, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .glassmorphic-card {
+            background: rgba(26, 26, 26, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 245, 212, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 245, 212, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glassmorphic-card:hover:not(.no-hover-effect) {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px 0 rgba(0, 245, 212, 0.18);
+        }
+
+        .section-title-modern {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 0.5rem;
+        }
+        .section-subtitle-modern {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header {
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 245, 212, 0.15);
+        }
+        .nav-link-modern {
+            color: var(--text-muted);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-link-modern:hover, .nav-link-modern.active {
+            color: var(--accent-neon);
+            text-shadow: 0 0 5px var(--accent-glow);
+        }
+        .nav-link-modern::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-neon);
+            transition: width 0.3s ease;
+        }
+        .nav-link-modern:hover::after, .nav-link-modern.active::after {
+            width: 70%;
+        }
+
+        .hamburger div { width: 25px; height: 2px; background-color: var(--text-light); margin: 6px 0; transition: all 0.3s ease; border-radius: 1px; }
+        .hamburger.open .bar1 { transform: rotate(-45deg) translate(-6px, 6px); }
         .hamburger.open .bar2 { opacity: 0; }
-        .hamburger.open .bar3 { transform: rotate(45deg) translate(-5px, -6px); }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
-        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border-radius: 10px; width: 90%; max-width: 700px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: fadeInModal 0.3s ease-out; }
-        @keyframes fadeInModal { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; transition: color 0.3s; }
-        .close-button:hover, .close-button:focus { color: #333; text-decoration: none; cursor: pointer; }
-        .dark .close-button { color: #94a3b8; }
-        .dark .close-button:hover, .dark .close-button:focus { color: #e2e8f0; }
-        #cv-image-container img { max-width: 100%; height: auto; border-radius: 5px; }
-        .filter-btn { transition: all 0.3s ease; }
-        .filter-btn.active { background-color: #F59E0B !important; color: #1f2937 !important; }
-        .dark .filter-btn.active { background-color: #F59E0B !important; color: #111827 !important; }
-        #cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background-color: #1e293b; color: #e2e8f0; padding: 1rem; text-align: center; z-index: 1001; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); display: none; }
-        .dark #cookie-banner { background-color: #0f172a; color: #cbd5e1; }
-        #cookie-banner p { margin-bottom: 0.75rem; }
-        #cookie-banner button { background-color: #F59E0B; color: #111827; border: none; padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s; }
-        #cookie-banner button:hover { background-color: #d97706; }
-        /* FAQ Accordion */
-        .faq-item summary { cursor: pointer; padding: 1rem; background-color: #f9fafb; border-radius: 0.5rem; transition: background-color 0.2s; }
-        .dark .faq-item summary { background-color: #334155; }
-        .faq-item summary:hover { background-color: #f3f4f6; }
-        .dark .faq-item summary:hover { background-color: #475569; }
-        .faq-item summary::-webkit-details-marker { display: none; } /* Hide default marker in Chrome/Safari */
-        .faq-item summary::marker { display: none; } /* Hide default marker in Firefox */
-        .faq-item summary::after { content: '\f078'; /* Font Awesome down arrow */ font-family: 'Font Awesome 6 Free'; font-weight: 900; float: right; transition: transform 0.3s; }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-item div { padding: 0.5rem 1rem 1rem; border-top: 1px solid #e5e7eb; }
-        .dark .faq-item div { border-top-color: #4b5563; }
+        .hamburger.open .bar3 { transform: rotate(45deg) translate(-6px, -7px); }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .stagger-children.is-visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: center; justify-content: center;}
+        .modal-content { background-color: var(--bg-card); margin: auto; padding: 20px; border-radius: 1rem; width: 90%; max-width: 500px; position: relative; box-shadow: 0 8px 32px 0 rgba(0, 245, 212, 0.15); animation: fadeInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 1px solid rgba(0, 245, 212, 0.25); }
+        @keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .close-button { color: var(--text-muted); position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; font-weight: bold; transition: color 0.3s, transform 0.3s; }
+        .close-button:hover, .close-button:focus { color: var(--accent-neon); text-decoration: none; cursor: pointer; transform: scale(1.1); }
+        #cv-image-container img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            text-align: center;
+            word-break: break-word;
+        }
+        @media (max-width: 640px) {
+            .modal-title { font-size: 1.5rem; }
+            .modal-content { width: 95%; padding: 15px; }
+        }
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 3px; background-color: var(--accent-neon); top: 0; bottom: 0; left: 50%; margin-left: -1.5px; opacity: 0.3; }
+        .timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background-color: var(--bg-dark); border: 3px solid var(--accent-neon); top: 15px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--accent-glow); }
+        .timeline-left { left: 0; }
+        .timeline-right { left: 50%; }
+        .timeline-left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid var(--accent-neon); border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--accent-neon); opacity: 0.6; }
+        .timeline-right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid var(--accent-neon); border-width: 10px 10px 10px 0; border-color: transparent var(--accent-neon) transparent transparent; opacity: 0.6; }
+        .timeline-right::after { left: -10px; }
+        .timeline-content { padding: 20px 30px; background-color: var(--bg-card); border: 1px solid rgba(0, 245, 212, 0.2); border-radius: 8px; position: relative; box-shadow: 0 4px 15px rgba(0, 245, 212, 0.08); }
+        .timeline-content h3 { color: var(--accent-neon); font-weight: 700; margin-bottom: 0.5rem; font-size: 1.25rem; }
+        .timeline-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .timeline-content .date { font-size: 0.8rem; font-weight: 500; color: var(--secondary-accent); margin-bottom: 0.5rem; display: block; }
+        .timeline-content ul { list-style: none; padding-left: 0; margin-top: 0.5rem; }
+        .timeline-content ul li { padding-left: 1.2em; position: relative; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+        .timeline-content ul li::before { content: "\f105"; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--accent-neon); }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 10px; }
+            .timeline-item { width: 100%; padding-left: 40px; padding-right: 15px; }
+            .timeline-item::before { left: 25px; border-width: 10px 10px 10px 0; border-color: transparent var(--accent-neon) transparent transparent; }
+            .timeline-left::after, .timeline-right::after { left: 0px; }
+            .timeline-right { left: 0%; }
+        }
+        .contact-input-modern {
+            width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem;
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            color: var(--text-light);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .contact-input-modern::placeholder { color: rgba(160, 160, 160, 0.6); }
+        .contact-input-modern:focus {
+            border-color: var(--accent-neon); outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 245, 212, 0.3);
+        }
+        .form-message {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+        .form-message.error { color: var(--bg-dark); background-color: var(--error-color); }
+        .form-message.success { color: var(--bg-dark); background-color: var(--success-color); }
+
+        .admin-edit-icon {
+            color: var(--secondary-accent);
+            margin-left: 8px;
+            cursor: pointer;
+            transition: color 0.3s;
+            display: none; 
+        }
+        .admin-edit-icon:hover { color: var(--accent-neon); }
+        body.admin-mode .admin-edit-icon { display: inline-block; }
+
+        #admin-panel-button { display: none; } 
+        body.admin-mode #admin-panel-button { display: inline-block; }
+        body.admin-mode #admin-panel-button-mobile { display: block; }
+
+
+        .auth-modal-link {
+            color: var(--accent-neon);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .auth-modal-link:hover {
+            color: var(--secondary-accent);
+        }
+        /* Styles for content restriction */
+        #main-content.hidden-content {
+            display: none;
+        }
+        #login-prompt {
+            display: none; /* Hidden by default, shown when content is restricted */
+            text-align: center;
+            padding: 50px 20px;
+            min-height: calc(100vh - 10rem); /* Adjust based on header/footer height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #login-prompt h2 {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        #login-prompt p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
     </style>
     <script>
         tailwind.config = {
@@ -86,473 +280,600 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0D9488', secondary: '#F59E0B',
-                        'custom-dark': '#0f172a', 'custom-light': '#f1f5f9',
-                        'primary-darker': '#047857', 'secondary-darker': '#B45309',
+                        'neon-accent': 'var(--accent-neon)',
+                        'secondary-accent': 'var(--secondary-accent)',
+                        'bg-dark': 'var(--bg-dark)',
+                        'bg-card': 'var(--bg-card)',
+                        'text-light': 'var(--text-light)',
+                        'text-muted': 'var(--text-muted)',
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    animation: { 'fade-in-up': 'fadeInUp 0.8s ease-out forwards', 'slide-in-left': 'slideInLeft 0.5s ease-out forwards' },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite ease-in-out',
+                        'slide-in-bottom': 'slideInBottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both'
+                    },
                     keyframes: {
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        slideInLeft: { '0%': { opacity: '0', transform: 'translateX(-20px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } }
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow)' },
+                            '50%': { boxShadow: '0 0 15px var(--accent-neon), 0 0 25px var(--accent-neon)' },
+                        },
+                        slideInBottom: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-custom-light text-slate-700 antialiased">
+<body class="dark">
 
-    <header class="bg-primary/90 dark:bg-primary-darker/90 backdrop-blur-md text-white py-4 fixed w-full top-0 z-50 shadow-lg transition-all duration-300">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl md:text-3xl font-bold tracking-tight hover:text-secondary transition-colors">Hồ Thái Long</a>
+    <header class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-bold tracking-tight text-text-light hover:text-neon-accent transition-colors">
+                HỒ THÁI LONG
+            </a>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="hamburger focus:outline-none" aria-label="Mở menu"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div></button>
+                <button id="mobile-menu-button" class="hamburger focus:outline-none" aria-label="Mở menu">
+                    <div class="bar1"></div><div class="bar2"></div><div class="bar3"></div>
+                </button>
             </div>
-            <nav class="hidden md:flex items-center space-x-2 lg:space-x-3">
-                <a href="#hero" class="nav-link">Trang chủ</a>
-                <a href="#about" class="nav-link">Giới thiệu</a>
-                <a href="#services" class="nav-link">Dịch vụ</a>
-                <a href="#stats" class="nav-link">Thống kê</a>
-                <a href="#skills" class="nav-link">Kỹ năng</a>
-                <a href="#experience" class="nav-link">Kinh nghiệm</a>
-                <a href="#projects" class="nav-link">Dự án</a>
-                <a href="#blog" class="nav-link">Bài viết</a>
-                <a href="#testimonials" class="nav-link">Chứng thực</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Liên hệ</a>
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <a href="#hero" class="nav-link-modern active">Trang chủ</a>
+                <a href="#about" class="nav-link-modern">Giới thiệu</a>
+                <a href="#experience" class="nav-link-modern">Kinh nghiệm</a>
+                <a href="#projects" class="nav-link-modern">Dự án</a>
+                <a href="#skills" class="nav-link-modern">Kỹ năng</a>
+                <a href="#education" class="nav-link-modern">Học vấn</a>
+                <a href="#contact" class="nav-link-modern">Liên hệ</a>
+                <div id="auth-links-desktop" class="flex items-center space-x-1 lg:space-x-2">
+                    <a id="login-btn-desktop" class="nav-link-modern">Đăng nhập</a>
+                    <a id="register-btn-desktop" class="nav-link-modern">Đăng ký</a>
+                </div>
+                <div id="user-info-desktop" class="hidden items-center space-x-1 lg:space-x-2">
+                    <span id="username-desktop" class="nav-link-modern"></span>
+                    <a id="admin-panel-button" class="nav-link-modern text-secondary-accent">Admin Panel</a>
+                    <a id="logout-btn-desktop" class="nav-link-modern">Đăng xuất</a>
+                </div>
             </nav>
-            <style>.nav-link { display:inline-block; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500; transition: color 0.3s, background-color 0.3s; } .nav-link:hover { color: #F59E0B; background-color: rgba(255,255,255,0.1); } .dark .nav-link:hover { background-color: rgba(0,0,0,0.2); }</style>
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 dark:focus:ring-slate-200/50 transition-colors" aria-label="Chuyển đổi giao diện sáng/tối">
-                <i class="fas fa-moon text-xl"></i><i class="fas fa-sun text-xl hidden"></i>
-            </button>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-primary/95 dark:bg-primary-darker/95 backdrop-blur-md">
-            <nav class="flex flex-col items-center space-y-3 py-4">
-                <a href="#hero" class="mobile-nav-link">Trang chủ</a>
-                <a href="#about" class="mobile-nav-link">Giới thiệu</a>
-                <a href="#services" class="mobile-nav-link">Dịch vụ</a>
-                <a href="#stats" class="mobile-nav-link">Thống kê</a>
-                <a href="#skills" class="mobile-nav-link">Kỹ năng</a>
-                <a href="#experience" class="mobile-nav-link">Kinh nghiệm</a>
-                <a href="#projects" class="mobile-nav-link">Dự án</a>
-                <a href="#blog" class="mobile-nav-link">Bài viết</a>
-                <a href="#testimonials" class="mobile-nav-link">Chứng thực</a>
-                <a href="#faq" class="mobile-nav-link">FAQ</a>
-                <a href="#contact" class="mobile-nav-link">Liên hệ</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-bg-card/95 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-6">
+                <a href="#hero" class="text-text-muted hover:text-neon-accent text-lg font-medium">Trang chủ</a>
+                <a href="#about" class="text-text-muted hover:text-neon-accent text-lg font-medium">Giới thiệu</a>
+                <a href="#experience" class="text-text-muted hover:text-neon-accent text-lg font-medium">Kinh nghiệm</a>
+                <a href="#projects" class="text-text-muted hover:text-neon-accent text-lg font-medium">Dự án</a>
+                <a href="#skills" class="text-text-muted hover:text-neon-accent text-lg font-medium">Kỹ năng</a>
+                <a href="#education" class="text-text-muted hover:text-neon-accent text-lg font-medium">Học vấn</a>
+                <a href="#contact" class="text-text-muted hover:text-neon-accent text-lg font-medium">Liên hệ</a>
+                 <div id="auth-links-mobile" class="flex flex-col items-center space-y-4">
+                    <a id="login-btn-mobile" class="text-text-muted hover:text-neon-accent text-lg font-medium">Đăng nhập</a>
+                    <a id="register-btn-mobile" class="text-text-muted hover:text-neon-accent text-lg font-medium">Đăng ký</a>
+                </div>
+                <div id="user-info-mobile" class="hidden flex-col items-center space-y-4">
+                    <span id="username-mobile" class="text-text-muted hover:text-neon-accent text-lg font-medium"></span>
+                    <a id="admin-panel-button-mobile" class="text-secondary-accent hover:text-neon-accent text-lg font-medium" style="display: none;">Admin Panel</a>
+                    <a id="logout-btn-mobile" class="text-text-muted hover:text-neon-accent text-lg font-medium">Đăng xuất</a>
+                </div>
             </nav>
-            <style>.mobile-nav-link { display:block; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 1rem; font-weight: 500; transition: color 0.3s, background-color 0.3s; text-align: center; width: 90%; margin-left: auto; margin-right: auto; } .mobile-nav-link:hover { color: #F59E0B; background-color: rgba(255,255,255,0.1); } .dark .mobile-nav-link:hover { background-color: rgba(0,0,0,0.2); }</style>
         </div>
     </header>
+    
+    <div id="login-prompt" class="pt-20 md:pt-24">
+        <div class="container mx-auto px-6 text-center">
+            <i class="fas fa-lock text-6xl neon-text mb-6"></i>
+            <h2 class="text-3xl md:text-4xl font-bold text-text-light mb-4">Nội dung được bảo vệ</h2>
+            <p class="text-lg md:text-xl text-text-muted mb-8 max-w-md mx-auto">Vui lòng <a id="prompt-login-link" class="text-neon-accent hover:underline cursor-pointer">đăng nhập</a> hoặc <a id="prompt-register-link" class="text-neon-accent hover:underline cursor-pointer">đăng ký</a> để xem toàn bộ nội dung của trang web.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <button id="prompt-login-button" class="neon-button w-full sm:w-auto">Đăng Nhập</button>
+                <button id="prompt-register-button" class="secondary-neon-button w-full sm:w-auto">Đăng Ký Ngay</button>
+            </div>
+        </div>
+    </div>
 
-    <main class="pt-20 md:pt-24">
-        <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-teal-500 to-cyan-600 dark:from-slate-800 dark:to-teal-900 text-white section-animate">
-            <div class="container mx-auto px-6 text-center">
-                <img src="https://placehold.co/150x150/F59E0B/FFFFFF?text=HTL&font=inter" alt="Hồ Thái Long Avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 border-4 border-white shadow-xl animate-fade-in-up hover:scale-105 transition-transform duration-300">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">Chào bạn, tôi là Hồ Thái Long</h1>
-                <p class="text-xl md:text-2xl mb-8 text-slate-100 dark:text-slate-200 animate-fade-in-up" style="animation-delay: 0.4s;">Lập trình viên Web chuyên nghiệp, đam mê xây dựng các giải pháp sáng tạo và hiệu quả.</p>
-                <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-4">
-                    <button id="view-cv-btn" class="hero-btn bg-secondary hover:bg-secondary-darker text-slate-900 animate-fade-in-up" style="animation-delay: 0.6s;">Xem CV <i class="fas fa-eye ml-2"></i></button>
-                    <a href="/cv/HoThaiLong_CV_mau.pdf" id="download-cv-btn-hero" class="hero-btn bg-transparent hover:bg-white/20 border-2 border-white text-white animate-fade-in-up" style="animation-delay: 0.8s;" download="HoThaiLong_CV.pdf">Tải CV <i class="fas fa-download ml-2"></i></a>
+    <main id="main-content" class="pt-20 md:pt-24 hidden-content">
+        <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden fade-in-section is-visible">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);"></div>
+            <div class="container mx-auto px-6 text-center z-10">
+                <div class="relative w-36 h-36 md:w-48 md:h-48 mx-auto mb-8 animate-slide-in-bottom" style="animation-delay: 0.2s;">
+                    <img src="https://i.imgur.com/1B2f0MN.jpeg" alt="[Hình ảnh của Hồ Thái Long]"
+                         class="rounded-full w-full h-full object-cover border-4 border-neon-accent shadow-lg animate-pulse-glow"
+                         onerror="this.onerror=null;this.src='https://placehold.co/150x150/00F5D4/0A0A0A?text=HTL&font=inter';">
+                    <div class="absolute inset-0 rounded-full border-2 border-neon-accent/50 animate-ping"></div>
                 </div>
-                <style>.hero-btn { display: inline-flex; align-items: center; justify-content: center; font-semibold; padding: 0.75rem 2rem; border-radius: 0.5rem; font-size: 1.125rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease; transform-origin: center; } .hero-btn:hover { box-shadow: 0 7px 14px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08); transform: translateY(-2px) scale(1.03); }</style>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-text-light animate-slide-in-bottom" style="animation-delay: 0.4s;">
+                    <span class="block">HỒ THÁI LONG</span>
+                    <span class="block neon-text text-3xl sm:text-4xl md:text-5xl mt-2">Lập trình viên</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-10 text-text-muted max-w-2xl mx-auto animate-slide-in-bottom" style="animation-delay: 0.6s;">
+                    Với 6 năm kinh nghiệm, triển khai hơn 30 dự án, tôi mang đến giải pháp web sáng tạo và hiệu quả.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-slide-in-bottom" style="animation-delay: 0.8s;">
+                    <a href="#projects" class="neon-button w-full sm:w-auto">Xem Dự Án</a>
+                    <a href="#contact" class="secondary-neon-button w-full sm:w-auto">Liên Hệ Ngay</a>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="py-16 md:py-24 bg-white section-animate">
+        <section id="about" class="py-20 md:py-32 fade-in-section">
             <div class="container mx-auto px-6">
-                <h2 class="section-title">Về bản thân</h2>
-                <div class="section-underline"></div>
-                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                    <div class="md:w-1/3 text-center animate-slide-in-left"><i class="fas fa-user-tie text-8xl md:text-9xl text-primary dark:text-teal-400 mb-6 transform transition-transform duration-500 hover:scale-110 hover:rotate-3"></i></div>
-                    <div class="md:w-2/3 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p class="mb-4">Xin chào! Tôi là Hồ Thái Long, một lập trình viên IT với niềm đam mê cháy bỏng trong lĩnh vực phát triển web. Với <strong>hơn 3 năm kinh nghiệm</strong>, tôi luôn không ngừng học hỏi và áp dụng những công nghệ mới nhất để tạo ra các sản phẩm web chất lượng cao, mang lại giá trị thực sự cho người dùng và doanh nghiệp.</p>
-                        <p class="mb-4">Phương châm làm việc của tôi là "Code Sạch - Giải Pháp Thông Minh - Trải Nghiệm Tối Ưu". Tôi tin rằng một sản phẩm tốt không chỉ đáp ứng yêu cầu về mặt chức năng mà còn phải có kiến trúc vững chắc, dễ bảo trì, mở rộng và mang lại trải nghiệm tốt nhất cho người dùng cuối.</p>
-                        <p>Ngoài công việc, tôi thích khám phá các công nghệ mới, đóng góp cho các dự án mã nguồn mở, đọc sách chuyên ngành và tham gia các cộng đồng lập trình để chia sẻ kiến thức và học hỏi từ đồng nghiệp.</p>
+                <h2 class="section-title-modern">Mục Tiêu Nghề Nghiệp <i class="fas fa-edit admin-edit-icon" title="Chỉnh sửa mục tiêu"></i></h2>
+                <p class="section-subtitle-modern">Đam mê và định hướng phát triển của tôi trong lĩnh vực công nghệ.</p>
+                <div class="glassmorphic-card p-8 md:p-12 text-center max-w-3xl mx-auto">
+                    <i class="fas fa-bullseye text-6xl neon-text mb-6"></i>
+                    <p class="text-lg md:text-xl text-text-muted leading-relaxed">
+                        Với 6 năm trong nghề lập trình, triển khai trực tiếp hơn 30 dự án, tôi mong muốn ứng tuyển vào vị trí Senior của Công ty để có thể áp dụng những kiến thức, kinh nghiệm lập trình của bản thân để nâng cấp sản phẩm và mang lại những giá trị hữu ích cho doanh nghiệp. Đồng thời, mục tiêu phát triển trong vòng 2 năm tới của tôi sẽ trở thành một Lead giỏi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 md:py-32 bg-bg-card fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title-modern">Kinh Nghiệm Làm Việc <i class="fas fa-edit admin-edit-icon" title="Chỉnh sửa kinh nghiệm"></i></h2>
+                <p class="section-subtitle-modern">Hành trình chuyên môn qua các vị trí và dự án thực tế.</p>
+                <div class="timeline stagger-children">
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content glassmorphic-card no-hover-effect">
+                            <h3>FRONT END DEVELOPER</h3>
+                            <span class="date">2021 - 2024 | Công ty dịch vụ cổng thông tin ageline</span>
+                            <ul>
+                                <li>Quản lý các dự án phát triển trang web từ thiết kế ban đầu cho đến hoàn thiện, tối ưu hóa khả năng tương thích đa trình duyệt và đa nền tảng.</li>
+                                <li>Tham gia đánh giá và thử nghiệm các tính năng mới.</li>
+                                <li>Hợp tác chặt chẽ với lập trình viên và khách hàng để đáp ứng yêu cầu dự án.</li>
+                                <li>Phát triển và tích hợp chủ đề tùy chỉnh vào WordPress, PHP-Fusion, Concrete5.</li>
+                                <li>Đào tạo khách hàng về quản lý nội dung trang web.</li>
+                                <li>Lập trình canvas HTML5 cho hoạt ảnh quảng cáo.</li>
+                                <li>Nghiên cứu, phát triển công nghệ mới cho sản phẩm dịch vụ.</li>
+                                <li>Hỗ trợ và review source code cho thành viên nhóm.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-content glassmorphic-card no-hover-effect">
+                            <h3>FLUTTER DEVELOPER</h3>
+                            <span class="date">2019 - 2021 | Công ty DEF</span>
+                            <ul>
+                                <li>Phối hợp team lập trình và phát triển sản phẩm Mobile App.</li>
+                                <li>Lên kế hoạch và Submit App lên App Store (Apple, Google).</li>
+                                <li>Đưa ra giải pháp xử lý vấn đề trong quá trình phát triển.</li>
+                                <li>Sửa lỗi và cải thiện hiệu suất ứng dụng.</li>
+                                <li>Chịu trách nhiệm end-to-end cho các tính năng phát triển.</li>
+                                <li>Quyết định phương pháp lập trình và xử lý trong phát triển, vận hành.</li>
+                                <li>Xây dựng chiến lược phát triển sản phẩm cùng product team.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content glassmorphic-card no-hover-effect">
+                            <h3>WEB DEVELOPER</h3>
+                            <span class="date">2017 - 2019 | Công ty công nghệ cao depsacts</span>
+                            <ul>
+                                <li>Phát triển trang web thân thiện người dùng, tăng traffic và trải nghiệm.</li>
+                                <li>Bảo trì và cập nhật website cho khách hàng.</li>
+                                <li>Thiết kế layout website, cắt HTML & CSS cho sản phẩm marketing.</li>
+                                <li>Viết và hệ thống tài liệu phần mềm, thông số kỹ thuật.</li>
+                                <li>Làm nhiều dự án đồng thời với tiêu chuẩn và hiệu suất cao.</li>
+                                <li>Tham gia dự án phát triển trang web game trực tuyến lớn.</li>
+                                <li>Tích hợp website với Facebook, Twitter, YouTube.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <style>.section-title { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; color: #0D9488; } .dark .section-title { color: #2dd4bf; } .section-underline { width: 5rem; height: 0.25rem; background-color: #F59E0B; margin-left: auto; margin-right: auto; margin-bottom: 3rem; border-radius: 0.125rem; }</style>
 
-        <section id="services" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800 section-animate">
+        <section id="projects" class="py-20 md:py-32 fade-in-section">
             <div class="container mx-auto px-6">
-                <h2 class="section-title">Dịch vụ cung cấp</h2>
-                <div class="section-underline"></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="service-card"><div class="service-icon-wrapper"><i class="fas fa-laptop-code service-icon"></i></div><h3 class="service-title">Phát triển Web Full-Stack</h3><p class="service-description">Xây dựng ứng dụng web hoàn chỉnh từ front-end đến back-end, sử dụng các công nghệ hiện đại.</p></div>
-                    <div class="service-card"><div class="service-icon-wrapper"><i class="fas fa-palette service-icon"></i></div><h3 class="service-title">Thiết kế Responsive & UI/UX</h3><p class="service-description">Tạo giao diện người dùng trực quan, thân thiện và tương thích trên mọi thiết bị.</p></div>
-                    <div class="service-card"><div class="service-icon-wrapper"><i class="fas fa-lightbulb service-icon"></i></div><h3 class="service-title">Tư vấn Giải pháp Công nghệ</h3><p class="service-description">Đưa ra các giải pháp công nghệ tối ưu, phù hợp với yêu cầu và ngân sách của dự án.</p></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .service-card { background-color: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); transition: all 0.3s ease; text-align: center; }
-            .dark .service-card { background-color: #1e293b; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.15); }
-            .service-card:hover { transform: translateY(-0.5rem) scale(1.03); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
-            .dark .service-card:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25), 0 10px 10px -5px rgba(0,0,0,0.1); }
-            .service-icon-wrapper { background-color: rgba(13, 148, 136, 0.1); border-radius: 9999px; width: 5rem; height: 5rem; margin-left: auto; margin-right: auto; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: background-color 0.3s; }
-            .dark .service-icon-wrapper { background-color: rgba(45, 212, 191, 0.2); }
-            .service-card:hover .service-icon-wrapper { background-color: rgba(13, 148, 136, 0.2); }
-            .dark .service-card:hover .service-icon-wrapper { background-color: rgba(45, 212, 191, 0.3); }
-            .service-icon { font-size: 2.25rem; color: #0D9488; }
-            .dark .service-icon { color: #2dd4bf; }
-            .service-title { font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.75rem; }
-            .dark .service-title { color: #f1f5f9; }
-            .service-description { font-size: 0.875rem; color: #4b5563; }
-            .dark .service-description { color: #94a3b8; }
-        </style>
-
-        <section id="stats" class="py-16 md:py-24 bg-primary dark:bg-teal-700 text-white section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Thành tựu đạt được</h2>
-                <div class="w-20 h-1 bg-secondary mx-auto mb-12"></div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="stat-item p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-project-diagram text-4xl text-secondary mb-3"></i>
-                        <div class="text-4xl font-extrabold stat-number" data-target="50">0</div>
-                        <p class="text-lg font-medium text-slate-200 dark:text-slate-300">Dự án hoàn thành</p>
+                <h2 class="section-title-modern">Dự Án Nổi Bật <i class="fas fa-edit admin-edit-icon" title="Chỉnh sửa dự án"></i></h2>
+                <p class="section-subtitle-modern">Minh chứng cho năng lực và sự sáng tạo qua các sản phẩm thực tế.</p>
+                <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8 stagger-children max-w-3xl mx-auto">
+                    <div class="glassmorphic-card group">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 overflow-hidden rounded-t-xl md:rounded-l-xl md:rounded-tr-none h-56 md:h-auto">
+                                <img src="https://placehold.co/600x400/1a1a1a/00F5D4?text=DVC+Project&font=inter"
+                                     alt="[Hình ảnh dự án Thiết kế Website cho Công ty DVC]"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/ff4777?text=Lỗi+Ảnh+DVC&font=inter';">
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <h3 class="text-xl lg:text-2xl font-bold text-text-light mb-2">Thiết kế Website DVC</h3>
+                                <p class="text-sm text-text-muted mb-1"><strong class="text-neon-accent">Khách hàng:</strong> Công ty DVC IPA</p>
+                                <p class="text-sm text-text-muted mb-1"><strong class="text-neon-accent">Thời gian:</strong> 2018 - 2019 | <strong class="text-neon-accent">Team:</strong> 2 người</p>
+                                <p class="text-sm text-text-muted mb-3"><strong class="text-neon-accent">Vai trò:</strong> Lead Dự Án</p>
+                                <p class="text-sm text-text-muted mb-4 leading-relaxed">
+                                    Thu thập yêu cầu, thiết kế UI, xây dựng tính năng (quản lý sản phẩm, giỏ hàng, thanh toán), phát triển API, kiểm thử và triển khai.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Node.js</span>
+                                </div>
+                                <a href="#" class="text-neon-accent font-medium hover:underline">Xem chi tiết (nếu có) <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-item p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-calendar-alt text-4xl text-secondary mb-3"></i>
-                        <div class="text-4xl font-extrabold stat-number" data-target="3">0</div>
-                        <p class="text-lg font-medium text-slate-200 dark:text-slate-300">Năm kinh nghiệm</p>
                     </div>
-                    <div class="stat-item p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-users text-4xl text-secondary mb-3"></i>
-                        <div class="text-4xl font-extrabold stat-number" data-target="30">0</div>
-                        <p class="text-lg font-medium text-slate-200 dark:text-slate-300">Khách hàng hài lòng</p>
+            </div>
+        </section>
+        <style>.tech-tag { background-color: rgba(0, 245, 212, 0.1); color: var(--accent-neon); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }</style>
+
+        <section id="skills" class="py-20 md:py-32 bg-bg-card fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title-modern">Kỹ Năng <i class="fas fa-edit admin-edit-icon" title="Chỉnh sửa kỹ năng"></i></h2>
+                <p class="section-subtitle-modern">Công cụ và năng lực tôi sử dụng để kiến tạo giải pháp.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="stagger-children">
+                        <h3 class="text-2xl font-bold text-neon-accent mb-6 text-center md:text-left">Kỹ Năng Chuyên Môn</h3>
+                        <div class="space-y-4">
+                            <div class="skill-item-modern"><span>JavaScript, HTML, CSS, GitLab, Node.js</span><div class="skill-bar"><div style="width: 90%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                            <div class="skill-item-modern"><span>SQL, NoSQL</span><div class="skill-bar"><div style="width: 85%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                            <div class="skill-item-modern"><span>Frameworks (Vuejs, Angular, React)</span><div class="skill-bar"><div style="width: 80%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                            <div class="skill-item-modern"><span>.NET, C++</span><div class="skill-bar"><div style="width: 70%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                            <div class="skill-item-modern"><span>Phân tích & Thiết kế hệ thống</span><div class="skill-bar"><div style="width: 88%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                            <div class="skill-item-modern"><span>Lập trình hướng đối tượng</span><div class="skill-bar"><div style="width: 92%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-accent));"></div></div></div>
+                        </div>
                     </div>
-                    <div class="stat-item p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-code text-4xl text-secondary mb-3"></i>
-                        <div class="text-4xl font-extrabold stat-number" data-target="100000" data-format="true">0</div>
-                        <p class="text-lg font-medium text-slate-200 dark:text-slate-300">Dòng code đã viết</p>
+                    <div class="stagger-children">
+                        <h3 class="text-2xl font-bold text-secondary-accent mb-6 text-center md:text-left">Kỹ Năng Mềm</h3>
+                        <ul class="list-none space-y-3">
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng thuyết trình</li>
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng giải quyết vấn đề</li>
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng tự tìm tòi, tự học</li>
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng giao tiếp</li>
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng làm việc nhóm</li>
+                            <li class="soft-skill-item"><i class="fas fa-check-circle mr-2 text-neon-accent"></i>Kỹ năng quản lý dự án</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            .skill-item-modern { margin-bottom: 1rem; }
+            .skill-item-modern span { display: block; color: var(--text-light); font-weight: 500; margin-bottom: 0.3rem; font-size: 0.95rem; }
+            .skill-bar { width: 100%; background-color: rgba(0, 245, 212, 0.1); border-radius: 5px; overflow: hidden; height: 10px; }
+            .skill-bar div { height: 100%; border-radius: 5px; transition: width 1s ease-out; }
+            .soft-skill-item { color: var(--text-muted); font-size: 1rem; display: flex; align-items: center; }
+        </style>
+
+        <section id="education" class="py-20 md:py-32 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title-modern">Học Vấn & Thành Tích <i class="fas fa-edit admin-edit-icon" title="Chỉnh sửa học vấn"></i></h2>
+                <p class="section-subtitle-modern">Nền tảng kiến thức và những ghi nhận trong quá trình học tập và làm việc.</p>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="glassmorphic-card p-8 stagger-children">
+                        <h3 class="text-2xl font-bold text-neon-accent mb-4"><i class="fas fa-graduation-cap mr-3"></i>Học Vấn</h3>
+                        <p class="text-xl font-semibold text-text-light">Công Nghệ Thông Tin (2014 - 2017)</p>
+                        <p class="text-text-muted mb-1">Trường Cao Đẳng Nghề Công Nghệ Thông Tin - Biên Hòa</p>
+                        <ul class="list-disc list-inside text-text-muted space-y-1 pl-1 mt-2">
+                            <li>Tốt nghiệp loại Giỏi</li>
+                            <li>Đạt học bổng 2 năm 2016 và 2017</li>
+                        </ul>
+                    </div>
+                    <div class="glassmorphic-card p-8 stagger-children">
+                        <h3 class="text-2xl font-bold text-secondary-accent mb-4"><i class="fas fa-award mr-3"></i>Danh Hiệu & Chứng Chỉ</h3>
+                        <p class="text-lg font-semibold text-text-light mb-2">Danh Hiệu:</p>
+                        <ul class="list-disc list-inside text-text-muted space-y-1 pl-1 mb-4">
+                            <li>Nhân viên xuất sắc của năm công ty DVC IPA (2023)</li>
+                            <li>Nhân viên cống hiến của năm (2020)</li>
+                        </ul>
+                        <p class="text-lg font-semibold text-text-light mb-2">Chứng Chỉ:</p>
+                        <ul class="list-disc list-inside text-text-muted space-y-1 pl-1">
+                            <li>PHP, MySQL, JavaScript (2016)</li>
+                            <li>Laravel, Framework, jQuery, React (2017)</li>
+                            <li>Linux, Redis, MongoDB (2018)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="py-16 md:py-24 bg-white section-animate">
+        <section id="contact" class="py-20 md:py-32 bg-bg-card fade-in-section">
             <div class="container mx-auto px-6">
-                <h2 class="section-title">Kỹ năng chuyên môn</h2>
-                <div class="section-underline"></div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-                    <div class="skill-card"><i class="fab fa-html5 skill-icon text-orange-500"></i><h3 class="skill-name">HTML5</h3><p class="skill-level">3+ năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-css3-alt skill-icon text-blue-500"></i><h3 class="skill-name">CSS3</h3><p class="skill-level">3+ năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-js-square skill-icon text-yellow-400"></i><h3 class="skill-name">JavaScript</h3><p class="skill-level">3+ năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-python skill-icon text-sky-700"></i><h3 class="skill-name">Python</h3><p class="skill-level">2+ năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-react skill-icon text-sky-500"></i><h3 class="skill-name">ReactJS</h3><p class="skill-level">2+ năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-node-js skill-icon text-green-500"></i><h3 class="skill-name">Node.js</h3><p class="skill-level">2 năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fas fa-database skill-icon text-indigo-500"></i><h3 class="skill-name">SQL & NoSQL</h3><p class="skill-level">3 năm kinh nghiệm</p></div>
-                    <div class="skill-card"><i class="fab fa-git-alt skill-icon text-red-600"></i><h3 class="skill-name">Git & GitHub</h3><p class="skill-level">Thành thạo</p></div>
-                    <div class="skill-card"><i class="fas fa-server skill-icon text-slate-500"></i><h3 class="skill-name">API Development</h3><p class="skill-level">RESTful & GraphQL</p></div>
-                    <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="Tailwind CSS" class="skill-img-icon"><h3 class="skill-name">TailwindCSS</h3><p class="skill-level">Thành thạo</p></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .skill-card { background-color: #f9fafb; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); transition: all 0.3s ease; text-align: center; }
-            .dark .skill-card { background-color: #1e293b; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.15), 0 2px 4px -1px rgba(0,0,0,0.1); }
-            .skill-card:hover { transform: translateY(-0.25rem) scale(1.03); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04); }
-            .dark .skill-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.15); }
-            .skill-icon { font-size: 3rem; margin-bottom: 0.75rem; transition: transform 0.3s; }
-            .skill-card:hover .skill-icon { transform: scale(1.1); }
-            .skill-img-icon { height: 3rem; margin-left: auto; margin-right: auto; margin-bottom: 0.75rem; transition: transform 0.3s; }
-            .skill-card:hover .skill-img-icon { transform: scale(1.1); }
-            .skill-name { font-size: 1.125rem; font-weight: 600; color: #1f2937; }
-            .dark .skill-name { color: #f1f5f9; }
-            .skill-level { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
-            .dark .skill-level { color: #9ca3af; }
-        </style>
-
-        <section id="experience" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800 section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Kinh nghiệm làm việc</h2>
-                <div class="section-underline"></div>
-                <div class="max-w-3xl mx-auto">
-                    <div class="experience-item"><div class="experience-dot"></div><h3 class="experience-role">Admin - DVC IPA</h3><p class="experience-duration">Tháng 10, 2022 - Hiện tại</p><ul class="experience-details"><li>Quản lý, bảo trì và phát triển các dự án web nội bộ và cho khách hàng.</li><li>Tối ưu hóa hiệu suất hệ thống, đảm bảo tính ổn định và bảo mật cao.</li><li>Nghiên cứu và áp dụng các công nghệ, framework mới để cải tiến sản phẩm.</li><li>Hỗ trợ kỹ thuật, đào tạo và giải quyết các vấn đề phát sinh cho người dùng.</li></ul></div>
-                    <div class="experience-item"><div class="experience-dot"></div><h3 class="experience-role">Freelance Web Developer</h3><p class="experience-duration">Tháng 6, 2021 - Tháng 9, 2022</p><ul class="experience-details"><li>Phát triển website tùy chỉnh cho khách hàng cá nhân và doanh nghiệp nhỏ.</li><li>Tập trung vào thiết kế responsive, tối ưu hóa trải nghiệm người dùng (UX).</li><li>Làm việc với HTML, CSS, JavaScript, PHP và các CMS phổ biến.</li><li>Quản lý dự án độc lập, từ khâu thu thập yêu cầu đến triển khai.</li></ul></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .experience-item { position: relative; border-left: 2px solid #0D9488; padding-left: 2rem; padding-top: 1.5rem; padding-bottom: 1.5rem; margin-bottom: 2rem; transition: border-color 0.3s; }
-            .dark .experience-item { border-left-color: #14b8a6; }
-            .experience-item:last-child { margin-bottom: 0; }
-            .experience-dot { position: absolute; left: -0.7rem; top: 1.5rem; width: 1.25rem; height: 1.25rem; background-color: #F59E0B; border-radius: 9999px; border: 4px solid #f1f5f9; transition: all 0.3s; }
-            .dark .experience-dot { border-color: #182233; }
-            .experience-item:hover .experience-dot { transform: scale(1.2); background-color: #0D9488; }
-            .dark .experience-item:hover .experience-dot { background-color: #14b8a6; }
-            .experience-role { font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 0.25rem; }
-            .dark .experience-role { color: #f1f5f9; }
-            .experience-duration { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem; }
-            .dark .experience-duration { color: #9ca3af; }
-            .experience-details { list-style: disc; padding-left: 1.25rem; color: #4b5563; line-height: 1.6; space-y: 0.25rem; }
-            .dark .experience-details { color: #cbd5e1; }
-        </style>
-
-        <section id="projects" class="py-16 md:py-24 bg-white section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Dự án nổi bật</h2>
-                <div class="section-underline"></div>
-                <div id="project-filters" class="flex flex-wrap justify-center gap-2 mb-10">
-                    <button class="filter-btn active bg-primary text-white hover:bg-primary-darker dark:bg-teal-600 dark:hover:bg-teal-700 py-2 px-4 rounded-md text-sm font-medium" data-filter="all">Tất cả</button>
-                    <button class="filter-btn bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-4 rounded-md text-sm font-medium" data-filter="webapp">Web App</button>
-                    <button class="filter-btn bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-4 rounded-md text-sm font-medium" data-filter="extension">Extension</button>
-                    <button class="filter-btn bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-4 rounded-md text-sm font-medium" data-filter="tool">Công cụ</button>
-                </div>
-                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="project-item" data-category="tool extension"><div class="project-image-wrapper"><img src="https://placehold.co/600x400/0D9488/FFFFFF?text=Bypass+Tool&font=inter" alt="Dự án Bypass Time" class="project-image"><div class="project-overlay"><i class="fas fa-link project-icon"></i></div></div><div class="project-content"><h3 class="project-title">Bypass Time cho All Web</h3><p class="project-description">Phát triển công cụ và extension vượt link, lấy mã tự động, tăng hiệu quả truy cập nội dung.</p><div class="project-tags"><span class="tag-js">JavaScript</span> <span class="tag-ext">Extension</span></div><a href="#" class="project-link">Xem chi tiết <i class="fas fa-arrow-right ml-1"></i></a></div></div>
-                    <div class="project-item" data-category="extension mobile"><div class="project-image-wrapper"><img src="https://placehold.co/600x400/0D9488/FFFFFF?text=AdBlock+Safari&font=inter" alt="Dự án Chặn Quảng Cáo Safari" class="project-image"><div class="project-overlay"><i class="fas fa-shield-alt project-icon"></i></div></div><div class="project-content"><h3 class="project-title">Chặn Quảng Cáo Safari (iPhone)</h3><p class="project-description">Tạo extension chặn quảng cáo hiệu quả cho Safari trên iOS, cải thiện trải nghiệm duyệt web.</p><div class="project-tags"><span class="tag-ios">iOS</span> <span class="tag-safari">Safari Extension</span></div><a href="#" class="project-link">Xem chi tiết <i class="fas fa-arrow-right ml-1"></i></a></div></div>
-                    <div class="project-item" data-category="webapp"><div class="project-image-wrapper"><img src="https://placehold.co/600x400/0D9488/FFFFFF?text=E-commerce+Site&font=inter" alt="Dự án Website Thương Mại Điện Tử" class="project-image"><div class="project-overlay"><i class="fas fa-shopping-cart project-icon"></i></div></div><div class="project-content"><h3 class="project-title">Website Thương Mại Điện Tử</h3><p class="project-description">Xây dựng trang e-commerce với giỏ hàng, thanh toán, quản lý sản phẩm và người dùng.</p><div class="project-tags"><span class="tag-react">React</span> <span class="tag-node">Node.js</span> <span class="tag-mongo">MongoDB</span></div><a href="#" class="project-link">Xem chi tiết <i class="fas fa-arrow-right ml-1"></i></a></div></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .project-item { background-color: #f9fafb; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); overflow: hidden; transition: all 0.3s ease; }
-            .dark .project-item { background-color: #1e293b; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.15); }
-            .project-item:hover { transform: translateY(-0.5rem) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
-            .dark .project-item:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25), 0 10px 10px -5px rgba(0,0,0,0.1); }
-            .project-image-wrapper { height: 12rem; width: 100%; background-color: #0D9488; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-            .dark .project-image-wrapper { background-color: #047857; }
-            .project-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-            .project-item:hover .project-image { transform: scale(1.05); }
-            .project-overlay { position: absolute; inset: 0; background-color: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
-            .project-item:hover .project-overlay { opacity: 1; }
-            .project-icon { font-size: 2.5rem; color: white; }
-            .project-content { padding: 1.5rem; }
-            .project-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; color: #1f2937; }
-            .dark .project-title { color: #f1f5f9; }
-            .project-description { color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem; }
-            .dark .project-description { color: #94a3b8; }
-            .project-tags { margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-            .project-item .tag-js { background-color: #f0db4f; color: #323330;} .project-item .tag-ext { background-color: #4285f4; color: white;} .project-item .tag-ios { background-color: #000000; color: white;} .project-item .tag-safari { background-color: #007aff; color: white;} .project-item .tag-react { background-color: #61dafb; color: #20232a;} .project-item .tag-node { background-color: #68a063; color: white;} .project-item .tag-mongo { background-color: #4db33d; color: white;}
-            .project-tags span { padding: 0.2em 0.6em; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 500; }
-            .project-link { display: inline-flex; align-items: center; color: #0D9488; font-weight: 500; transition: color 0.3s; }
-            .dark .project-link { color: #2dd4bf; }
-            .project-link:hover { color: #F59E0B; } .dark .project-link:hover { color: #fbbf24; }
-        </style>
-
-        <section id="blog" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800 section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Bài viết & Chia sẻ</h2>
-                <div class="section-underline"></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="blog-card"><a href="#" class="blog-image-link"><img src="https://placehold.co/600x350/0D9488/FFFFFF?text=Blog+Post+1&font=inter" alt="Tiêu đề bài viết 1" class="blog-image"></a><div class="blog-content"><p class="blog-meta">Ngày 5 tháng 5, 2025 • Web Development</p><h3 class="blog-title"><a href="#">Xu Hướng Thiết Kế Web Hiện Đại Năm 2025</a></h3><p class="blog-excerpt">Khám phá những xu hướng thiết kế web nổi bật sẽ định hình ngành công nghiệp trong năm tới...</p><a href="#" class="blog-readmore">Đọc thêm <i class="fas fa-long-arrow-alt-right ml-1"></i></a></div></div>
-                    <div class="blog-card"><a href="#" class="blog-image-link"><img src="https://placehold.co/600x350/0D9488/FFFFFF?text=Blog+Post+2&font=inter" alt="Tiêu đề bài viết 2" class="blog-image"></a><div class="blog-content"><p class="blog-meta">Ngày 28 tháng 4, 2025 • JavaScript</p><h3 class="blog-title"><a href="#">Tối Ưu Hóa Hiệu Suất JavaScript Cho Ứng Dụng Web</a></h3><p class="blog-excerpt">Các kỹ thuật và mẹo giúp cải thiện tốc độ tải và thực thi mã JavaScript của bạn...</p><a href="#" class="blog-readmore">Đọc thêm <i class="fas fa-long-arrow-alt-right ml-1"></i></a></div></div>
-                    <div class="blog-card"><a href="#" class="blog-image-link"><img src="https://placehold.co/600x350/0D9488/FFFFFF?text=Blog+Post+3&font=inter" alt="Tiêu đề bài viết 3" class="blog-image"></a><div class="blog-content"><p class="blog-meta">Ngày 15 tháng 4, 2025 • Bảo Mật</p><h3 class="blog-title"><a href="#">5 Bước Cơ Bản Để Bảo Vệ Website Của Bạn</a></h3><p class="blog-excerpt">Những biện pháp cần thiết để tăng cường an ninh cho trang web và dữ liệu người dùng...</p><a href="#" class="blog-readmore">Đọc thêm <i class="fas fa-long-arrow-alt-right ml-1"></i></a></div></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .blog-card { background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); overflow: hidden; transition: all 0.3s ease; }
-            .dark .blog-card { background-color: #1e293b; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.15); }
-            .blog-card:hover { transform: translateY(-0.25rem); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
-            .dark .blog-card:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25), 0 10px 10px -5px rgba(0,0,0,0.1); }
-            .blog-image-link { display: block; }
-            .blog-image { width: 100%; height: 12rem; object-fit: cover; transition: opacity 0.3s, transform 0.3s; }
-            .blog-card:hover .blog-image { opacity: 0.85; transform: scale(1.03); }
-            .blog-content { padding: 1.5rem; }
-            .blog-meta { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem; }
-            .dark .blog-meta { color: #9ca3af; }
-            .blog-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-            .blog-title a { color: #1f2937; transition: color 0.3s; }
-            .dark .blog-title a { color: #f1f5f9; }
-            .blog-card:hover .blog-title a { color: #0D9488; }
-            .dark .blog-card:hover .blog-title a { color: #2dd4bf; }
-            .blog-excerpt { color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem; line-height: 1.6; }
-            .dark .blog-excerpt { color: #cbd5e1; }
-            .blog-readmore { font-weight: 500; color: #0D9488; transition: color 0.3s; }
-            .dark .blog-readmore { color: #2dd4bf; }
-            .blog-readmore:hover { color: #F59E0B; } .dark .blog-readmore:hover { color: #fbbf24; }
-        </style>
-
-        <section id="testimonials" class="py-16 md:py-24 bg-white section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Lời chứng thực</h2>
-                <div class="section-underline"></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="testimonial-card"><i class="fas fa-quote-left testimonial-quote-icon"></i><p class="testimonial-text">"Long là một lập trình viên rất tài năng và tận tâm. Anh ấy luôn hoàn thành xuất sắc công việc và đưa ra những giải pháp sáng tạo cho các vấn đề phức tạp."</p><div class="testimonial-author"><img src="https://placehold.co/50x50/E2E8F0/334155?text=A&font=inter" alt="Người chứng thực 1" class="testimonial-avatar"><div><h4 class="testimonial-name">Nguyễn Văn An</h4><p class="testimonial-title">Trưởng phòng Kỹ thuật, Công ty ABC</p></div></div></div>
-                    <div class="testimonial-card"><i class="fas fa-quote-left testimonial-quote-icon"></i><p class="testimonial-text">"Tôi rất ấn tượng với khả năng làm việc độc lập và tinh thần trách nhiệm của Hồ Thái Long. Dự án của chúng tôi đã thành công tốt đẹp nhờ sự đóng góp của anh."</p><div class="testimonial-author"><img src="https://placehold.co/50x50/E2E8F0/334155?text=B&font=inter" alt="Người chứng thực 2" class="testimonial-avatar"><div><h4 class="testimonial-name">Trần Thị Bình</h4><p class="testimonial-title">Giám đốc Dự án, Tập đoàn XYZ</p></div></div></div>
-                    <div class="testimonial-card"><i class="fas fa-quote-left testimonial-quote-icon"></i><p class="testimonial-text">"Kỹ năng chuyên môn và thái độ làm việc chuyên nghiệp của Long đã giúp đội ngũ chúng tôi đạt được nhiều kết quả vượt trội. Rất khuyến khích!"</p><div class="testimonial-author"><img src="https://placehold.co/50x50/E2E8F0/334155?text=C&font=inter" alt="Người chứng thực 3" class="testimonial-avatar"><div><h4 class="testimonial-name">Lê Minh Cường</h4><p class="testimonial-title">Đồng nghiệp, Công ty DEF</p></div></div></div>
-                </div>
-            </div>
-        </section>
-        <style>
-            .testimonial-card { background-color: #f9fafb; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); transition: all 0.3s ease; }
-            .dark .testimonial-card { background-color: #1e293b; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.15); }
-            .testimonial-card:hover { transform: translateY(-0.25rem) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
-            .dark .testimonial-card:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25), 0 10px 10px -5px rgba(0,0,0,0.1); }
-            .testimonial-quote-icon { font-size: 2rem; color: #F59E0B; margin-bottom: 1rem; }
-            .testimonial-text { font-style: italic; color: #4b5563; margin-bottom: 1.5rem; }
-            .dark .testimonial-text { color: #cbd5e1; }
-            .testimonial-author { display: flex; align-items: center; }
-            .testimonial-avatar { width: 3rem; height: 3rem; border-radius: 9999px; margin-right: 1rem; border: 2px solid #F59E0B; }
-            .testimonial-name { font-weight: 600; color: #1f2937; }
-            .dark .testimonial-name { color: #f1f5f9; }
-            .testimonial-title { font-size: 0.875rem; color: #6b7280; }
-            .dark .testimonial-title { color: #9ca3af; }
-        </style>
-
-        <section id="cta" class="py-16 md:py-24 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-slate-800 dark:to-teal-800 text-white section-animate">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Sẵn sàng để bắt đầu dự án tiếp theo?</h2>
-                <p class="text-lg md:text-xl mb-8 text-slate-200 dark:text-slate-300 max-w-2xl mx-auto">Hãy kết nối với tôi để thảo luận về ý tưởng của bạn và cách tôi có thể giúp biến nó thành hiện thực.</p>
-                <a href="#contact" class="bg-secondary hover:bg-secondary-darker text-slate-900 font-semibold py-3 px-10 rounded-lg text-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 dark:focus:ring-offset-slate-800">
-                    Liên hệ ngay <i class="fas fa-paper-plane ml-2"></i>
-                </a>
-            </div>
-        </section>
-
-        <section id="faq" class="py-16 md:py-24 bg-white section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Câu Hỏi Thường Gặp (FAQ)</h2>
-                <div class="section-underline"></div>
-                <div class="max-w-3xl mx-auto space-y-4">
-                    <details class="faq-item group bg-slate-50 dark:bg-slate-700 rounded-lg shadow-sm">
-                        <summary class="font-semibold text-lg text-slate-800 dark:text-slate-100 flex justify-between items-center">
-                            <span>Những công nghệ chính anh sử dụng là gì?</span>
-                        </summary>
-                        <div class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Tôi thành thạo các công nghệ front-end như HTML, CSS, JavaScript (ES6+), ReactJS, Tailwind CSS. Về back-end, tôi có kinh nghiệm với Node.js, ExpressJS, Python (Django/Flask) và các cơ sở dữ liệu như MongoDB, PostgreSQL.
+                <h2 class="section-title-modern">Kết Nối Với Tôi</h2>
+                <p class="section-subtitle-modern">Sẵn sàng thảo luận về dự án của bạn hoặc chỉ đơn giản là muốn nói lời chào? Đừng ngần ngại!</p>
+                <div class="max-w-xl mx-auto glassmorphic-card p-8 md:p-10 no-hover-effect">
+                    <form id="contact-form-modern" action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name-modern" class="block text-sm font-medium text-text-muted mb-1">Họ và Tên</label>
+                            <input type="text" name="name" id="name-modern" required placeholder="Tên của bạn" class="contact-input-modern" aria-label="Họ và tên của bạn">
                         </div>
-                    </details>
-                    <details class="faq-item group bg-slate-50 dark:bg-slate-700 rounded-lg shadow-sm">
-                        <summary class="font-semibold text-lg text-slate-800 dark:text-slate-100 flex justify-between items-center">
-                            <span>Quy trình làm việc của anh như thế nào?</span>
-                        </summary>
-                        <div class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Quy trình của tôi thường bao gồm: Thảo luận yêu cầu -> Thiết kế (nếu cần) -> Phát triển -> Kiểm thử -> Triển khai -> Bảo trì. Tôi luôn ưu tiên giao tiếp thường xuyên với khách hàng để đảm bảo dự án đi đúng hướng.
+                        <div>
+                            <label for="email-modern" class="block text-sm font-medium text-text-muted mb-1">Địa chỉ Email</label>
+                            <input type="email" name="email" id="email-modern" required placeholder="longlongnuocngoai@gmail.com" class="contact-input-modern" aria-label="Địa chỉ email của bạn">
                         </div>
-                    </details>
-                    <details class="faq-item group bg-slate-50 dark:bg-slate-700 rounded-lg shadow-sm">
-                        <summary class="font-semibold text-lg text-slate-800 dark:text-slate-100 flex justify-between items-center">
-                            <span>Thời gian hoàn thành một dự án website cơ bản là bao lâu?</span>
-                        </summary>
-                        <div class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Thời gian phụ thuộc vào độ phức tạp và quy mô của dự án. Một website portfolio cá nhân hoặc trang landing page đơn giản có thể mất từ 1-2 tuần. Các dự án lớn hơn sẽ cần nhiều thời gian hơn. Hãy liên hệ để tôi có thể đánh giá cụ thể dự án của bạn.
+                        <div>
+                            <label for="message-modern" class="block text-sm font-medium text-text-muted mb-1">Lời nhắn</label>
+                            <textarea name="message" id="message-modern" rows="5" required placeholder="Hãy cho tôi biết ý tưởng của bạn..." class="contact-input-modern resize-none" aria-label="Lời nhắn của bạn"></textarea>
                         </div>
-                    </details>
-                     <details class="faq-item group bg-slate-50 dark:bg-slate-700 rounded-lg shadow-sm">
-                        <summary class="font-semibold text-lg text-slate-800 dark:text-slate-100 flex justify-between items-center">
-                            <span>Anh có nhận làm các dự án freelance không?</span>
-                        </summary>
-                        <div class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Có, tôi luôn sẵn lòng thảo luận về các cơ hội hợp tác freelance. Vui lòng gửi thông tin chi tiết về dự án của bạn qua form liên hệ hoặc email.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800 section-animate">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Liên hệ với tôi</h2>
-                <div class="section-underline"></div>
-                <div class="max-w-2xl mx-auto bg-white dark:bg-slate-700 p-8 md:p-10 rounded-xl shadow-xl">
-                    <form id="contact-form" action="#" method="POST">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div><label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Họ và Tên</label><input type="text" name="name" id="name" required placeholder="Nguyễn Văn A" class="form-input" aria-label="Họ và tên của bạn"></div>
-                            <div><label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Địa chỉ Email</label><input type="email" name="email" id="email" required placeholder="email@example.com" class="form-input" aria-label="Địa chỉ email của bạn"></div>
-                        </div>
-                        <div class="mb-6"><label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Tiêu đề</label><input type="text" name="subject" id="subject" required placeholder="Ví dụ: Cơ hội hợp tác" class="form-input" aria-label="Tiêu đề tin nhắn"></div>
-                        <div class="mb-6"><label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Nội dung tin nhắn</label><textarea name="message" id="message" rows="5" required placeholder="Nội dung bạn muốn gửi..." class="form-textarea" aria-label="Nội dung tin nhắn của bạn"></textarea></div>
-                        <style> /* Reusable form input styles */ .form-input, .form-textarea { width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid #cbd5e1; transition: border-color 0.3s, box-shadow 0.3s; background-color: white; } .dark .form-input, .dark .form-textarea { border-color: #475569; background-color: #334155; color: #e2e8f0; } .form-input:focus, .form-textarea:focus { border-color: #0D9488; outline: none; box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.3); } .dark .form-input:focus, .dark .form-textarea:focus { border-color: #14b8a6; box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.3); } .form-textarea { resize: vertical; min-height: 120px; }</style>
-                        <div class="text-center">
-                            <button type="submit" class="bg-secondary hover:bg-secondary-darker text-slate-900 font-semibold py-3 px-10 rounded-lg text-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 dark:focus:ring-offset-slate-800">Gửi Tin Nhắn <i class="fas fa-paper-plane ml-2"></i></button>
+                        <div class="text-center pt-2">
+                            <button type="submit" class="neon-button w-full sm:w-auto">Gửi Tin Nhắn <i class="fas fa-paper-plane ml-2"></i></button>
                         </div>
                     </form>
-                    <p id="form-status" class="mt-4 text-center text-sm"></p>
+                    <p id="form-status-modern" class="mt-6 text-center text-sm"></p>
+                    <div class="mt-8 text-center text-text-muted">
+                        <p class="mb-2">Hoặc liên hệ trực tiếp:</p>
+                        <p><i class="fas fa-phone-alt mr-2 text-neon-accent"></i>0348430700</p>
+                        <p><i class="fas fa-map-marker-alt mr-2 text-neon-accent"></i>Biên Hòa - Đồng Nai</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-primary dark:bg-custom-dark text-white py-12 mt-12 border-t-4 border-secondary">
+    <footer class="py-12 mt-12 border-t border-neon-accent/20">
         <div class="container mx-auto px-6 text-center">
-            <div class="mb-6">
-                <a href="https://www.facebook.com/profile.php?id=100013878992025" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://github.com/longdev2k1" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="mailto:longthaitk2@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="https://www.facebook.com/profile.php?id=100013878992025" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://github.com/longdev2k1" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i class="fab fa-github"></i></a>
+                <a href="mailto:longlongnuocngoai@gmail.com" class="footer-social-link"><i class="fas fa-envelope"></i></a>
             </div>
-            <style>.social-link { display: inline-block; color: #cbd5e1; margin: 0 0.75rem; font-size: 1.5rem; transition: color 0.3s, transform 0.3s; } .social-link:hover { color: #F59E0B; transform: translateY(-2px); }</style>
-            <p class="text-slate-400 text-sm">&copy; <span id="currentYear"></span> Hồ Thái Long. Mọi quyền được bảo lưu.</p>
-            <p class="text-slate-500 text-xs mt-2">Thiết kế với <i class="fas fa-heart text-red-500"></i> và Tailwind CSS.</p>
+            <style>.footer-social-link { color: var(--text-muted); font-size: 1.5rem; transition: color 0.3s, transform 0.3s; } .footer-social-link:hover { color: var(--accent-neon); transform: translateY(-2px) scale(1.1); }</style>
+            <p class="text-text-muted text-sm">© <span id="currentYear"></span> HỒ THÁI LONG. Mọi ý tưởng đều được chào đón.</p>
+            <p class="text-xs text-text-muted/70 mt-2">Thiết kế với <i class="fas fa-heart text-secondary-accent"></i> hồ thái long - ghost</p>
         </div>
     </footer>
 
-    <button id="back-to-top" class="fixed bottom-6 right-6 bg-secondary hover:bg-secondary-darker text-slate-900 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl opacity-0 invisible transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-amber-400" aria-label="Cuộn lên đầu trang"><i class="fas fa-arrow-up"></i></button>
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl opacity-0 invisible transition-all duration-300 transform hover:scale-110 focus:outline-none neon-border bg-bg-card/80 backdrop-blur-sm text-neon-accent hover:bg-neon-accent hover:text-bg-dark" aria-label="Cuộn lên đầu trang"><i class="fas fa-arrow-up"></i></button>
 
     <div id="cvModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" id="closeCvModal" aria-label="Đóng">&times;</span>
-            <h3 class="text-2xl font-semibold mb-4 text-slate-800 dark:text-slate-100">Sơ Yếu Lý Lịch - Hồ Thái Long</h3>
-            <div id="cv-image-container" class="my-4 max-h-[70vh] overflow-y-auto border border-slate-200 dark:border-slate-600 rounded-md p-2">
-                <img src="https://placehold.co/800x1131/FFFFFF/0D9488?text=CV+Của+Hồ+Thái+Long%0A(Thay+thế+bằng+hình+ảnh+CV+thực+tế+của+bạn)&font=inter" alt="CV Hồ Thái Long - Hình ảnh mẫu">
-            </div>
-            <div class="text-center mt-6">
-                 <a href="/cv/HoThaiLong_CV_mau.pdf" id="download-cv-modal-btn" class="bg-primary hover:bg-primary-darker text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105" download="HoThaiLong_CV.pdf">Tải xuống CV (PDF) <i class="fas fa-download ml-2"></i></a>
+            <span class="close-button" id="closeCvModal" aria-label="Đóng">×</span>
+            <h3 class="modal-title">Sơ Yếu Lý Lịch - HỒ THÁI LONG</h3>
+            <div id="cv-image-container" class="my-4 max-h-[70vh] overflow-y-auto border border-neon-accent/30 rounded-md p-2">
+                <img src="https://placehold.co/800x1131/1a1a1a/00F5D4?text=CV+Của+Hồ+Thái+Long%0A(Thay+thế+bằng+hình+ảnh+CV+thực+tế+của+bạn)&font=inter"
+                     alt="CV Hồ Thái Long - Hình ảnh mẫu"
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x1131/1a1a1a/ff4777?text=Lỗi+Tải+CV&font=inter';">
             </div>
         </div>
     </div>
 
-    <div id="cookie-banner">
-        <p>Trang web này sử dụng cookie để đảm bảo bạn có trải nghiệm tốt nhất. <a href="/privacy-policy.html" class="underline hover:text-secondary">Tìm hiểu thêm</a>.</p>
-        <button id="accept-cookies-btn">Đã hiểu!</button>
+    <div id="loginModal" class="modal">
+        <div class="modal-content glassmorphic-card no-hover-effect">
+            <span class="close-button" id="closeLoginModal" aria-label="Đóng">×</span>
+            <h3 class="modal-title">Đăng Nhập</h3>
+            <form id="loginForm" class="space-y-6 px-4 pb-4">
+                <div>
+                    <label for="loginEmail" class="block text-sm font-medium text-text-muted mb-1">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="Nhập email của bạn" class="contact-input-modern">
+                </div>
+                <div>
+                    <label for="loginPassword" class="block text-sm font-medium text-text-muted mb-1">Mật khẩu</label>
+                    <input type="password" id="loginPassword" required placeholder="Nhập mật khẩu" class="contact-input-modern">
+                </div>
+                <p id="loginMessage" class="form-message" style="display: none;"></p>
+                <div class="text-center pt-2">
+                    <button type="submit" class="neon-button w-full">Đăng Nhập</button>
+                </div>
+                <p class="text-center text-sm text-text-muted">
+                    Chưa có tài khoản? <span id="switchToRegister" class="auth-modal-link">Đăng ký ngay</span>
+                </p>
+            </form>
+        </div>
     </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content glassmorphic-card no-hover-effect">
+            <span class="close-button" id="closeRegisterModal" aria-label="Đóng">×</span>
+            <h3 class="modal-title">Tạo Tài Khoản</h3>
+            <form id="registerForm" class="space-y-5 px-4 pb-4"> <div>
+                    <label for="registerUsername" class="block text-sm font-medium text-text-muted mb-1">Tên người dùng</label>
+                    <input type="text" id="registerUsername" required placeholder="Chọn tên người dùng" class="contact-input-modern">
+                </div>
+                <div>
+                    <label for="registerEmail" class="block text-sm font-medium text-text-muted mb-1">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="Nhập email của bạn" class="contact-input-modern">
+                </div>
+                <div>
+                    <label for="registerPassword" class="block text-sm font-medium text-text-muted mb-1">Mật khẩu</label>
+                    <input type="password" id="registerPassword" required placeholder="Tạo mật khẩu (ít nhất 6 ký tự)" class="contact-input-modern">
+                </div>
+                <div>
+                    <label for="registerConfirmPassword" class="block text-sm font-medium text-text-muted mb-1">Xác nhận mật khẩu</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="Nhập lại mật khẩu" class="contact-input-modern">
+                </div>
+                <p id="registerMessage" class="form-message" style="display: none;"></p>
+                <div class="text-center pt-2">
+                    <button type="submit" class="neon-button w-full">Đăng Ký</button>
+                </div>
+                 <p class="text-center text-sm text-text-muted">
+                    Đã có tài khoản? <span id="switchToLogin" class="auth-modal-link">Đăng nhập</span>
+                </p>
+            </form>
+        </div>
+    </div>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Theme Toggle ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const sunIcon = themeToggleBtn.querySelector('.fa-sun');
-        const moonIcon = themeToggleBtn.querySelector('.fa-moon');
-        const htmlElement = document.documentElement;
+        // --- DOM Elements ---
+        const mainContent = document.getElementById('main-content');
+        const loginPrompt = document.getElementById('login-prompt');
+        const promptLoginLink = document.getElementById('prompt-login-link');
+        const promptRegisterLink = document.getElementById('prompt-register-link');
+        const promptLoginButton = document.getElementById('prompt-login-button');
+        const promptRegisterButton = document.getElementById('prompt-register-button');
 
-        function applyTheme(theme) {
-            if (theme === 'dark') {
-                htmlElement.classList.add('dark');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                htmlElement.classList.remove('dark');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
-        }
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme) applyTheme(savedTheme);
-        else if (prefersDark) applyTheme('dark');
-        else applyTheme('light');
-
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = htmlElement.classList.toggle('dark');
-            const newTheme = isDark ? 'dark' : 'light';
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-        // --- Mobile Menu ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const hamburgerButton = document.querySelector('.hamburger');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            hamburgerButton.classList.toggle('open');
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.setAttribute('aria-hidden', isExpanded);
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                hamburgerButton.classList.remove('open');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-            });
-        });
+        
+        const sectionsForNav = document.querySelectorAll('#main-content section[id]'); // Only sections within main-content
+        const navLinks = document.querySelectorAll('header nav a.nav-link-modern');
+        const mobileNavLinksForScroll = document.querySelectorAll('#mobile-menu nav a:not([id*="btn"]):not([id*="logout"]):not([id*="admin"])');
+        
+        const backToTopButton = document.getElementById('back-to-top');
+        const contactForm = document.getElementById('contact-form-modern');
+        const formStatus = document.getElementById('form-status-modern');
+        const currentYearEl = document.getElementById('currentYear');
 
+        const cvModal = document.getElementById('cvModal');
+        const closeCvModalBtn = document.getElementById('closeCvModal');
+
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModalBtn = document.getElementById('closeLoginModal');
+        const closeRegisterModalBtn = document.getElementById('closeRegisterModal');
+
+        const loginBtnDesktop = document.getElementById('login-btn-desktop');
+        const registerBtnDesktop = document.getElementById('register-btn-desktop');
+        const logoutBtnDesktop = document.getElementById('logout-btn-desktop');
+        const userInfoDesktop = document.getElementById('user-info-desktop');
+        const authLinksDesktop = document.getElementById('auth-links-desktop');
+        const usernameDesktop = document.getElementById('username-desktop');
+        const adminPanelButton = document.getElementById('admin-panel-button');
+
+        const loginBtnMobile = document.getElementById('login-btn-mobile');
+        const registerBtnMobile = document.getElementById('register-btn-mobile');
+        const logoutBtnMobile = document.getElementById('logout-btn-mobile');
+        const userInfoMobile = document.getElementById('user-info-mobile');
+        const authLinksMobile = document.getElementById('auth-links-mobile');
+        const usernameMobile = document.getElementById('username-mobile');
+        const adminPanelButtonMobile = document.getElementById('admin-panel-button-mobile');
+
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loginMessage = document.getElementById('loginMessage');
+        const registerMessage = document.getElementById('registerMessage');
+
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+
+        // --- Constants for Authentication ---
+        // const USERS_DB_KEY = 'portfolio_users_db'; // No longer needed for frontend simulation
+        const CURRENT_USER_SESSION_KEY = 'portfolio_current_user'; // Key for sessionStorage
+        const JWT_TOKEN_KEY = 'portfolio_jwt_token'; // Key for localStorage to store JWT
+        // const ADMIN_EMAIL = 'admin@admin.com'; // No longer needed for frontend logic
+        // const ADMIN_PASSWORD = 'admin'; // REMOVED - Handled by backend
+
+        const BACKEND_URL = 'http://localhost:3001'; // URL của Node.js backend
+
+        // --- Helper Functions ---
+        // function getStoredUsers() { // No longer needed
+        //     const users = localStorage.getItem(USERS_DB_KEY);
+        //     return users ? JSON.parse(users) : [];
+        // }
+
+        // function storeUsers(users) { // No longer needed
+        //     localStorage.setItem(USERS_DB_KEY, JSON.stringify(users));
+        // }
+
+        function getCurrentUser() {
+            const user = sessionStorage.getItem(CURRENT_USER_SESSION_KEY);
+            return user ? JSON.parse(user) : null;
+        }
+        
+        function getAuthToken() {
+            return localStorage.getItem(JWT_TOKEN_KEY);
+        }
+
+        function setCurrentUser(user, token) {
+            if (user) {
+                sessionStorage.setItem(CURRENT_USER_SESSION_KEY, JSON.stringify(user));
+                if (token) {
+                    localStorage.setItem(JWT_TOKEN_KEY, token);
+                }
+            } else {
+                sessionStorage.removeItem(CURRENT_USER_SESSION_KEY);
+                localStorage.removeItem(JWT_TOKEN_KEY); // Remove token on logout
+            }
+            updateContentVisibility(); 
+            updateUINavAuth(); 
+        }
+
+        function showMessage(element, messageText, isError = true) {
+            element.textContent = messageText;
+            element.className = `form-message ${isError ? 'error' : 'success'}`;
+            element.style.display = 'block';
+        }
+
+        function clearMessage(element) {
+            element.textContent = '';
+            element.style.display = 'none';
+        }
+
+        function openModal(modal) {
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modal) {
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                clearMessage(loginMessage); 
+                clearMessage(registerMessage);
+            }
+        }
+        
+        // --- Content Visibility ---
+        function updateContentVisibility() {
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                mainContent.classList.remove('hidden-content');
+                loginPrompt.style.display = 'none';
+                initializeScrollAnimations();
+                initializeSkillBarAnimations();
+
+            } else {
+                mainContent.classList.add('hidden-content');
+                loginPrompt.style.display = 'flex'; 
+            }
+        }
+
+        // --- Mobile Menu ---
+        if (mobileMenuButton && mobileMenu && hamburgerButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerButton.classList.toggle('open');
+                mobileMenuButton.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden')));
+                mobileMenu.setAttribute('aria-hidden', String(mobileMenu.classList.contains('hidden')));
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                if (!link.id.includes('login-btn') && !link.id.includes('register-btn') && !link.id.includes('logout-btn') && !link.id.includes('admin-panel-button')) {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerButton.classList.remove('open');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        mobileMenu.setAttribute('aria-hidden', 'true');
+                    });
+                }
+            });
+        }
+
+        // --- Active Nav Link on Scroll ---
+        function changeNavActiveState(targetId) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${targetId}`);
+                }
+            });
+            mobileNavLinksForScroll.forEach(link => {
+                if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
+                    link.classList.toggle('text-neon-accent', link.getAttribute('href') === `#${targetId}`);
+                    link.classList.toggle('text-text-muted', link.getAttribute('href') !== `#${targetId}`);
+                }
+            });
+        }
+
+        if (sectionsForNav.length > 0 && navLinks.length > 0) {
+            const navObserverOptions = { root: null, rootMargin: "-40% 0px -60% 0px", threshold: 0 };
+            const navObserver = new IntersectionObserver(entries => {
+                const currentUser = getCurrentUser();
+                if (!currentUser) return; 
+
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        changeNavActiveState(entry.target.id);
+                    }
+                });
+            }, navObserverOptions);
+            sectionsForNav.forEach(section => navObserver.observe(section));
+        }
+        
         // --- Smooth Scrolling with Header Offset ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -561,149 +882,278 @@
                     const targetElement = document.querySelector(hrefAttribute);
                     if (targetElement) {
                         e.preventDefault();
-                        const headerOffset = document.querySelector('header').offsetHeight || 80;
+                        const currentUser = getCurrentUser();
+                        if (!currentUser && targetElement.closest('#main-content')) {
+                             openModal(loginModal); 
+                             return;
+                        }
+
+                        const headerEl = document.querySelector('header');
+                        const headerOffset = headerEl ? headerEl.offsetHeight : 70;
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        if (window.innerWidth >= 768 && currentUser) { 
+                            changeNavActiveState(targetElement.id);
+                        }
                     }
                 }
             });
         });
 
-        // --- Scroll Reveal Animation & Stat Counter ---
-        const sections = document.querySelectorAll('.section-animate');
-        const statNumbers = document.querySelectorAll('.stat-number');
-        let statsAnimated = false; // Flag to ensure stats animate only once
+        // --- Scroll Reveal Animation (Fade In & Stagger) ---
+        let revealObserver;
+        function initializeScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in-section, .stagger-children');
+            if (animatedElements.length > 0) {
+                const revealObserverOptions = { root: null, rootMargin: '0px 0px -100px 0px', threshold: 0.1 };
+                revealObserver = new IntersectionObserver((entries, observerInstance) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            if (entry.target.classList.contains('stagger-children')) {
+                                Array.from(entry.target.children).forEach((child, index) => {
+                                    child.style.transitionDelay = `${index * 120}ms`;
+                                });
+                            }
+                        } 
+                    });
+                }, revealObserverOptions);
+                animatedElements.forEach(el => revealObserver.observe(el));
+            }
+        }
+        
+        // --- Skill bar animation on scroll ---
+        let skillObserver;
+        let skillsAnimated = false; 
+        function initializeSkillBarAnimations() {
+            const skillBars = document.querySelectorAll('.skill-bar > div');
+            const skillSection = document.getElementById('skills');
+            skillsAnimated = false; 
 
-        const animateStat = (element) => {
-            const target = +element.getAttribute('data-target');
-            const format = element.getAttribute('data-format') === 'true';
-            element.innerText = '0';
-            const duration = 1500; // ms
-            const stepTime = Math.abs(Math.floor(duration / target)) || 50;
-
-            let current = 0;
-            const timer = setInterval(() => {
-                current += Math.ceil(target / (duration / stepTime));
-                if (current >= target) {
-                    clearInterval(timer);
-                    current = target;
-                }
-                element.innerText = format ? current.toLocaleString('vi-VN') : current;
-            }, stepTime);
-        };
-
-        const sectionObserverOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const sectionObserver = new IntersectionObserver((entries, observerInstance) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-
-                    // Check if this is the stats section and if it hasn't been animated yet
-                    if (entry.target.id === 'stats' && !statsAnimated) {
-                        statNumbers.forEach(animateStat);
-                        statsAnimated = true; // Set flag to true
-                    }
-                    // observerInstance.unobserve(entry.target); // Keep observing if you want re-animation on scroll up/down
-                }
-            });
-        }, sectionObserverOptions);
-        sections.forEach(section => sectionObserver.observe(section));
-
+            if (skillSection && skillBars.length > 0) {
+                const skillObserverOptions = { root: null, threshold: 0.3 }; 
+                skillObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !skillsAnimated) {
+                            skillBars.forEach(bar => {
+                                const targetWidth = bar.style.width; 
+                                bar.style.width = '0%'; 
+                                setTimeout(() => { 
+                                    bar.style.width = targetWidth;
+                                }, 100);
+                            });
+                            skillsAnimated = true; 
+                        }
+                    });
+                }, skillObserverOptions);
+                skillObserver.observe(skillSection);
+            }
+        }
 
         // --- Back to Top Button ---
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 400) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
 
         // --- Contact Form ---
-        const contactForm = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-        if (contactForm) {
+        if (contactForm && formStatus) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const subject = document.getElementById('subject').value.trim();
-                const message = document.getElementById('message').value.trim();
-                if (!name || !email || !subject || !message) {
+                const name = contactForm.querySelector('#name-modern').value.trim();
+                const email = contactForm.querySelector('#email-modern').value.trim();
+                const message = contactForm.querySelector('#message-modern').value.trim();
+
+                if (!name || !email || !message) {
                     formStatus.textContent = 'Vui lòng điền đầy đủ thông tin.';
-                    formStatus.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
+                    formStatus.className = 'mt-6 text-center text-sm text-red-400';
                     return;
                 }
+                if (!/^\S+@\S+\.\S+$/.test(email)) {
+                       formStatus.textContent = 'Vui lòng nhập địa chỉ email hợp lệ.';
+                       formStatus.className = 'mt-6 text-center text-sm text-red-400';
+                       return;
+                }
+
                 formStatus.textContent = 'Đang gửi tin nhắn...';
-                formStatus.className = 'mt-4 text-center text-sm text-sky-600 dark:text-sky-400';
+                formStatus.className = 'mt-6 text-center text-sm text-neon-accent';
                 setTimeout(() => {
-                    formStatus.textContent = 'Cảm ơn bạn! Tin nhắn của bạn đã được gửi.';
-                    formStatus.className = 'mt-4 text-center text-sm text-emerald-600 dark:text-emerald-400';
+                    formStatus.textContent = 'Cảm ơn bạn! Tin nhắn đã được gửi.';
+                    formStatus.className = 'mt-6 text-center text-sm text-green-400';
                     contactForm.reset();
                 }, 2000);
             });
         }
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
+        }
 
-        // --- CV Modal Logic ---
-        const cvModal = document.getElementById('cvModal');
-        const viewCvBtn = document.getElementById('view-cv-btn');
-        const closeCvModalBtn = document.getElementById('closeCvModal');
-        const downloadCvHeroBtn = document.getElementById('download-cv-btn-hero');
-        const downloadCvModalBtn = document.getElementById('download-cv-modal-btn');
+        if (closeCvModalBtn) closeCvModalBtn.onclick = () => closeModal(cvModal);
+        if (cvModal) {
+            window.addEventListener('click', (event) => { if (event.target == cvModal) closeModal(cvModal); });
+            window.addEventListener('keydown', (event) => { if (event.key === 'Escape' && cvModal.style.display === 'flex') closeModal(cvModal); });
+        }
+        
+        [loginBtnDesktop, loginBtnMobile, promptLoginLink, promptLoginButton].forEach(btn => btn.addEventListener('click', () => openModal(loginModal)));
+        [registerBtnDesktop, registerBtnMobile, promptRegisterLink, promptRegisterButton].forEach(btn => btn.addEventListener('click', () => openModal(registerModal)));
+        
+        if (closeLoginModalBtn) closeLoginModalBtn.onclick = () => closeModal(loginModal);
+        if (closeRegisterModalBtn) closeRegisterModalBtn.onclick = () => closeModal(registerModal);
 
-        // IMPORTANT: User needs to replace this with the actual path to their CV file.
-        const cvFilePath = '/cv/HoThaiLong_CV_mau.pdf'; // Placeholder, e.g., '/assets/HoThaiLong_CV.pdf'
-        const cvFileName = 'HoThaiLong_CV.pdf'; // Suggested download name
-
-        if (downloadCvHeroBtn) { downloadCvHeroBtn.href = cvFilePath; downloadCvHeroBtn.download = cvFileName; }
-        if (downloadCvModalBtn) { downloadCvModalBtn.href = cvFilePath; downloadCvModalBtn.download = cvFileName; }
-
-        if (viewCvBtn) { viewCvBtn.onclick = () => { cvModal.style.display = "block"; document.body.style.overflow = 'hidden'; }}
-        if (closeCvModalBtn) { closeCvModalBtn.onclick = () => { cvModal.style.display = "none"; document.body.style.overflow = 'auto'; }}
-        window.onclick = (event) => { if (event.target == cvModal) { cvModal.style.display = "none"; document.body.style.overflow = 'auto'; }}
-
-        // --- Project Filtering ---
-        const filterButtons = document.querySelectorAll('#project-filters .filter-btn');
-        const projectItems = document.querySelectorAll('#projects-grid .project-item');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filterValue = button.getAttribute('data-filter');
-                projectItems.forEach(item => {
-                    const itemCategories = item.getAttribute('data-category').split(' ');
-                    if (filterValue === 'all' || itemCategories.includes(filterValue)) {
-                        item.style.display = 'block';
-                        item.classList.remove('opacity-0', 'scale-90'); item.classList.add('opacity-100', 'scale-100');
-                    } else {
-                        item.classList.add('opacity-0', 'scale-90');
-                        setTimeout(() => { item.style.display = 'none'; }, 300);
-                    }
-                });
-            });
+        if (switchToRegister) switchToRegister.onclick = () => { closeModal(loginModal); openModal(registerModal); };
+        if (switchToLogin) switchToLogin.onclick = () => { closeModal(registerModal); openModal(loginModal); };
+        
+        [loginModal, registerModal].forEach(modal => {
+            if (modal) {
+                window.addEventListener('click', (event) => { if (event.target == modal) closeModal(modal); });
+                window.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.style.display === 'flex') closeModal(modal); });
+            }
         });
-        projectItems.forEach(item => { item.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out'; });
 
-        // --- Cookie Consent Banner ---
-        const cookieBanner = document.getElementById('cookie-banner');
-        const acceptCookiesBtn = document.getElementById('accept-cookies-btn');
-        if (!localStorage.getItem('cookieConsent')) { if (cookieBanner) cookieBanner.style.display = 'block'; }
-        if (acceptCookiesBtn) {
-            acceptCookiesBtn.addEventListener('click', () => {
-                localStorage.setItem('cookieConsent', 'true');
-                if (cookieBanner) cookieBanner.style.display = 'none';
+        // --- Registration Logic ---
+        if (registerForm) {
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                clearMessage(registerMessage);
+                const username = document.getElementById('registerUsername').value.trim();
+                const email = document.getElementById('registerEmail').value.trim();
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+                if (!username || !email || !password || !confirmPassword) {
+                    showMessage(registerMessage, 'Vui lòng điền đầy đủ thông tin.'); return;
+                }
+                if (password.length < 6) {
+                    showMessage(registerMessage, 'Mật khẩu phải có ít nhất 6 ký tự.'); return;
+                }
+                if (password !== confirmPassword) {
+                    showMessage(registerMessage, 'Mật khẩu xác nhận không khớp.'); return;
+                }
+                if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    showMessage(registerMessage, 'Địa chỉ email không hợp lệ.'); return;
+                }
+
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/auth/register`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, email, password })
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        showMessage(registerMessage, data.message || 'Đăng ký thành công! Vui lòng đăng nhập.', false);
+                        registerForm.reset();
+                        setTimeout(() => { closeModal(registerModal); openModal(loginModal); }, 1500);
+                    } else {
+                        showMessage(registerMessage, data.message || `Đăng ký thất bại (Lỗi ${response.status})`);
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi gọi API đăng ký:', error);
+                    showMessage(registerMessage, 'Không thể kết nối đến server. Vui lòng thử lại sau.');
+                }
             });
         }
 
-        // --- FAQ Accordion ---
-        // Note: The <details> element provides basic accordion functionality natively.
-        // If more complex behavior is needed (e.g., only one open at a time), more JS would be required.
+        // --- Login Logic ---
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                clearMessage(loginMessage);
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value;
+
+                if (!email || !password) {
+                    showMessage(loginMessage, 'Vui lòng nhập email và mật khẩu.'); return;
+                }
+
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await response.json(); 
+                    
+                    if (response.ok && data.user && data.token) { // Kiểm tra cả user và token
+                        setCurrentUser(data.user, data.token); // Lưu cả user và token
+                        showMessage(loginMessage, `Đăng nhập thành công! Xin chào ${data.user.username}.`, false);
+                        loginForm.reset();
+                        setTimeout(() => { closeModal(loginModal); }, 1000);
+                    } else {
+                        showMessage(loginMessage, data.message || `Đăng nhập thất bại (Lỗi ${response.status})`);
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi gọi API đăng nhập:', error);
+                    showMessage(loginMessage, 'Không thể kết nối đến server. Vui lòng thử lại sau.');
+                }
+            });
+        }
+        
+        // --- Logout Logic ---
+        function handleLogout() {
+            setCurrentUser(null, null); // Xóa cả user và token
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                hamburgerButton.classList.remove('open');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+            }
+        }
+        [logoutBtnDesktop, logoutBtnMobile].forEach(btn => btn.addEventListener('click', handleLogout));
+
+        // Update UI Navigation Auth Links based on login state
+        function updateUINavAuth() {
+            const currentUser = getCurrentUser();
+            const isAdmin = currentUser && currentUser.role === 'admin';
+
+            if (currentUser) {
+                [authLinksDesktop, authLinksMobile].forEach(el => el.classList.add('hidden'));
+                [userInfoDesktop, userInfoMobile].forEach(el => el.classList.remove('hidden'));
+                [usernameDesktop, usernameMobile].forEach(el => el.textContent = `Xin chào, ${currentUser.username}`);
+                
+                if (isAdmin) {
+                    document.body.classList.add('admin-mode');
+                    [adminPanelButton, adminPanelButtonMobile].forEach(btn => {
+                        btn.style.display = isAdmin ? 'inline-block' : 'none'; 
+                        if(btn.id === 'admin-panel-button-mobile') btn.style.display = isAdmin ? 'block' : 'none';
+
+                        btn.onclick = () => alert('Bảng điều khiển Admin (Chức năng này đang được phát triển và sẽ cần backend thực sự!)');
+                    });
+                } else {
+                    document.body.classList.remove('admin-mode');
+                    [adminPanelButton, adminPanelButtonMobile].forEach(btn => btn.style.display = 'none');
+                }
+            } else {
+                [authLinksDesktop, authLinksMobile].forEach(el => el.classList.remove('hidden'));
+                [userInfoDesktop, userInfoMobile].forEach(el => el.classList.add('hidden'));
+                document.body.classList.remove('admin-mode');
+                [adminPanelButton, adminPanelButtonMobile].forEach(btn => btn.style.display = 'none');
+            }
+        }
+        
+        // Initial UI setup on page load
+        updateContentVisibility(); 
+        updateUINavAuth();       
+
+        document.querySelectorAll('.admin-edit-icon').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                const sectionTitleElement = e.target.closest('h2');
+                if(sectionTitleElement){
+                    const sectionTitle = sectionTitleElement.textContent.replace('Chỉnh sửa', '').trim();
+                    alert(`Chức năng chỉnh sửa cho mục "${sectionTitle}" sẽ được kích hoạt tại đây cho Admin (Cần backend để hoạt động).`);
+                }
+            });
+        });
+
     });
     </script>
 </body>
