@@ -699,7 +699,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const hamburgerButton = document.querySelector('.hamburger');
         
-        const sectionsForNav = document.querySelectorAll('#main-content section[id]'); // Only sections within main-content
+        const sectionsForNav = document.querySelectorAll('#main-content section[id]');
         const navLinks = document.querySelectorAll('header nav a.nav-link-modern');
         const mobileNavLinksForScroll = document.querySelectorAll('#mobile-menu nav a:not([id*="btn"]):not([id*="logout"]):not([id*="admin"])');
         
@@ -741,42 +741,30 @@
         const switchToLogin = document.getElementById('switchToLogin');
 
         // --- Constants for Authentication ---
-        // const USERS_DB_KEY = 'portfolio_users_db'; // No longer needed for frontend simulation
-        const CURRENT_USER_SESSION_KEY = 'portfolio_current_user'; // Key for sessionStorage
-        const JWT_TOKEN_KEY = 'portfolio_jwt_token'; // Key for localStorage to store JWT
-        // const ADMIN_EMAIL = 'admin@admin.com'; // No longer needed for frontend logic
-        // const ADMIN_PASSWORD = 'admin'; // REMOVED - Handled by backend
+        const CURRENT_USER_SESSION_KEY = 'portfolio_current_user'; 
+        const JWT_TOKEN_KEY = 'portfolio_jwt_token'; // Vẫn sử dụng để lưu token nếu backend trả về
 
-        const BACKEND_URL = 'http://localhost:3001'; // URL của Node.js backend
+        const BACKEND_URL = 'http://localhost:3001'; 
 
         // --- Helper Functions ---
-        // function getStoredUsers() { // No longer needed
-        //     const users = localStorage.getItem(USERS_DB_KEY);
-        //     return users ? JSON.parse(users) : [];
-        // }
-
-        // function storeUsers(users) { // No longer needed
-        //     localStorage.setItem(USERS_DB_KEY, JSON.stringify(users));
-        // }
-
         function getCurrentUser() {
             const user = sessionStorage.getItem(CURRENT_USER_SESSION_KEY);
             return user ? JSON.parse(user) : null;
         }
         
-        function getAuthToken() {
+        function getAuthToken() { // Vẫn giữ lại hàm này nếu bạn muốn dùng token cho các request khác sau này
             return localStorage.getItem(JWT_TOKEN_KEY);
         }
 
-        function setCurrentUser(user, token) {
+        function setCurrentUser(user, token) { // Giữ lại tham số token
             if (user) {
                 sessionStorage.setItem(CURRENT_USER_SESSION_KEY, JSON.stringify(user));
-                if (token) {
+                if (token) { // Chỉ lưu token nếu backend trả về
                     localStorage.setItem(JWT_TOKEN_KEY, token);
                 }
             } else {
                 sessionStorage.removeItem(CURRENT_USER_SESSION_KEY);
-                localStorage.removeItem(JWT_TOKEN_KEY); // Remove token on logout
+                localStorage.removeItem(JWT_TOKEN_KEY); 
             }
             updateContentVisibility(); 
             updateUINavAuth(); 
@@ -1046,13 +1034,16 @@
                     const response = await fetch(`${BACKEND_URL}/api/auth/register`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ username, email, password })
+                        body: JSON.stringify({ username, email, password }) // Gửi role nếu backend của bạn xử lý (phiên bản hiện tại của backend là có)
                     });
                     const data = await response.json();
                     if (response.ok) {
                         showMessage(registerMessage, data.message || 'Đăng ký thành công! Vui lòng đăng nhập.', false);
                         registerForm.reset();
-                        setTimeout(() => { closeModal(registerModal); openModal(loginModal); }, 1500);
+                        setTimeout(() => { 
+                            closeModal(registerModal); 
+                            openModal(loginModal); 
+                        }, 1500);
                     } else {
                         showMessage(registerMessage, data.message || `Đăng ký thất bại (Lỗi ${response.status})`);
                     }
@@ -1083,11 +1074,11 @@
                     });
                     const data = await response.json(); 
                     
-                    if (response.ok && data.user && data.token) { // Kiểm tra cả user và token
+                    // Backend (nodejs_server_all_in_one_code_v2) sẽ trả về token
+                    if (response.ok && data.user && data.token) { 
                         setCurrentUser(data.user, data.token); // Lưu cả user và token
-                        showMessage(loginMessage, `Đăng nhập thành công! Xin chào ${data.user.username}.`, false);
                         loginForm.reset();
-                        setTimeout(() => { closeModal(loginModal); }, 1000);
+                        closeModal(loginModal); 
                     } else {
                         showMessage(loginMessage, data.message || `Đăng nhập thất bại (Lỗi ${response.status})`);
                     }
